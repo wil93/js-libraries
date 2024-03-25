@@ -1,0 +1,12 @@
+{
+  "name": "@olinfo/tailwind",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Alessandro Bortolin <bortolin.alessandro@outlook.it>",
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5",
+    "daisyui": "^4.8",
+    "tailwindcss": "^3.4"
+  }
+}

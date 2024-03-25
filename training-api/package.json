@@ -1,0 +1,39 @@
+{
+  "name": "@olinfo/training-api",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "author": "Alessandro Bortolin <bortolin.alessandro@outlook.it>",
+  "scripts": {
+    "watch": "tsup --watch",
+    "prebuild": "rm -rf dist",
+    "build": "tsup --minify",
+    "prepack": "yarn build"
+  },
+  "files": [
+    "dist"
+  ],
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "format": "esm",
+    "dts": true,
+    "sourcemap": true
+  },
+  "dependencies": {
+    "@types/node": "^20",
+    "jwt-decode": "^4.0",
+    "zod": "^3.22",
+    "zod-validation-error": "^3.0"
+  },
+  "devDependencies": {
+    "@olinfo/eslint": "^0.2",
+    "@olinfo/prettier": "^0.1",
+    "tailwindcss": "^3.3",
+    "tsup": "^8.0",
+    "typescript": "^5.4"
+  }
+}
