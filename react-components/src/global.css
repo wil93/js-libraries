@@ -8,3 +8,24 @@
 .navbar .menu-horizontal details > ul {
   @apply z-30 mt-3 w-fit min-w-52;
 }
+
+.tooltip:hover:before,
+.tooltip:hover:after {
+  @apply delay-300;
+}
+
+.tooltip:before,
+.tooltip:after {
+  @apply z-40;
+}
+
+@media (prefers-color-scheme: dark) {
+  .shiki,
+  .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}

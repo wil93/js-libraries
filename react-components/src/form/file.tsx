@@ -20,7 +20,7 @@ export function SingleFileField({
   optional,
 }: SingleFileProps) {
   const [ref, setRef] = useState<HTMLInputElement | null>(null);
-  const { setValue, validation, globalDisabled, pending } = useField(field, ref, validate);
+  const { setValue, validation, globalDisabled, pending } = useField(field, ref, { validate });
 
   return (
     <BaseField label={label} validation={validation}>
@@ -55,7 +55,7 @@ export function MultipleFileField({
   optional,
 }: MultipleFilesProps) {
   const [ref, setRef] = useState<HTMLInputElement | null>(null);
-  const { setValue, validation, globalDisabled, pending } = useField(field, ref, validate);
+  const { setValue, validation, globalDisabled, pending } = useField(field, ref, { validate });
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files

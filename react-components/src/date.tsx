@@ -1,12 +1,27 @@
 import clsx from "clsx";
 import { intlFormat, intlFormatDistance } from "date-fns";
 
-export function DateTime({ date, className }: { date: Date; className?: string }) {
-  const formatted = intlFormat(date, {
-    dateStyle: "medium",
-    timeStyle: "short",
-  });
+type DateProps = {
+  date: Date;
+  dateStyle?: Intl.DateTimeFormatOptions["dateStyle"] | "hidden";
+  timeStyle?: Intl.DateTimeFormatOptions["timeStyle"] | "hidden";
+  className?: string;
+};
 
+function style(dateStyle: DateProps["dateStyle"], timeStyle: DateProps["timeStyle"]) {
+  return {
+    dateStyle: dateStyle === "hidden" ? undefined : dateStyle,
+    timeStyle: timeStyle === "hidden" ? undefined : timeStyle,
+  };
+}
+
+export function DateTime({
+  date,
+  dateStyle = "medium",
+  timeStyle = "short",
+  className,
+}: DateProps) {
+  const formatted = intlFormat(date, style(dateStyle, timeStyle));
   const duration = intlFormatDistance(date, new Date());
 
   return (
@@ -16,12 +31,13 @@ export function DateTime({ date, className }: { date: Date; className?: string }
   );
 }
 
-export function DateDistance({ date, className }: { date: Date; className?: string }) {
-  const formatted = intlFormat(date, {
-    dateStyle: "medium",
-    timeStyle: "short",
-  });
-
+export function DateDistance({
+  date,
+  dateStyle = "medium",
+  timeStyle = "short",
+  className,
+}: DateProps) {
+  const formatted = intlFormat(date, style(dateStyle, timeStyle));
   const duration = intlFormatDistance(date, new Date());
 
   return (

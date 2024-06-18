@@ -12,14 +12,14 @@ export function WithinTimeRange({ start, end, children }: Props) {
   const visible = useIsAfter(start) ?? true;
   const hidden = useIsAfter(end) ?? false;
 
-  if (visible && !hidden) return children;
+  return visible && !hidden && children;
 }
 
 export function useIsAfter(time?: Date) {
   const isAfter = useCallback(() => time && isPast(time), [time]);
 
   const [value, setValue] = useState(isAfter);
-  const refresh = useCallback(() => !value && isAfter() && setValue(true), [value, isAfter]);
+  const refresh = useCallback(() => setValue(isAfter()), [value, isAfter]);
 
   useEffect(() => {
     if (!time) {
@@ -28,6 +28,7 @@ export function useIsAfter(time?: Date) {
     }
 
     const diff = differenceInMilliseconds(time, Date.now());
+    setValue(diff < 0);
     if (diff < 0) return;
 
     const timeout = setTimeout(refresh, diff + 5);

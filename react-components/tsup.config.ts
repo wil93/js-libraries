@@ -7,6 +7,7 @@ export default defineConfig({
   sourcemap: true,
   loader: {
     ".css": "copy",
+    ".module.css": "copy",
   },
   esbuildOptions(options) {
     options.banner = {

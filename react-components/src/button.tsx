@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { LucideIcon } from "lucide-react";
 
 type Props = {
-  onClick?: () => Promise<void>;
+  onClick?: () => Promise<void> | void;
   icon?: LucideIcon;
   disabled?: boolean;
   className?: string;

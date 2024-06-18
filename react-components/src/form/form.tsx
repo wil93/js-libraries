@@ -12,7 +12,7 @@ import {
 } from "react";
 
 import clsx from "clsx";
-import { CircleAlert, LucideIcon } from "lucide-react";
+import { CircleAlert } from "lucide-react";
 
 import { FormFieldError } from "./error";
 
@@ -23,7 +23,7 @@ type FormContextProps = {
   pending: boolean;
 };
 
-const FormContext = createContext<FormContextProps>({
+export const FormContext = createContext<FormContextProps>({
   state: {},
   setState: () => {},
   globalDisabled: false,
@@ -58,7 +58,7 @@ export function Form<State extends Record<string, any>>({
     setPending(true);
 
     try {
-      await onSubmit(state as State);
+      await onSubmit?.(state as State);
     } catch (err) {
       if (err instanceof FormFieldError) {
         const input = formRef.current?.querySelector(`[name="${err.field}"]`) as HTMLInputElement;
@@ -94,7 +94,10 @@ export function Form<State extends Record<string, any>>({
 export function useField<T>(
   field: string,
   input: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null,
-  validate?: (value: T) => string | undefined,
+  options?: {
+    validate?: (value: T) => string | undefined;
+    validationErrorMap?: { [K in keyof ValidityState]?: string };
+  },
 ) {
   const [validation, setValidation] = useState<string>();
   const { state, setState, globalDisabled, pending } = useContext(FormContext);
@@ -105,15 +108,22 @@ export function useField<T>(
     return () => input?.removeEventListener("invalid", onInvalid);
 
     function onInvalid(e: Event) {
-      setValidation((e.currentTarget as HTMLInputElement).validationMessage);
+      const el = e.currentTarget as HTMLInputElement;
+      for (const [validation, message] of Object.entries(options?.validationErrorMap ?? {})) {
+        if (el.validity[validation as keyof ValidityState]) {
+          setValidation(message);
+          return;
+        }
+      }
+      setValidation(el.validationMessage);
     }
-  }, [input]);
+  }, [input, options?.validationErrorMap]);
 
   return {
     value: state[field],
     setValue: (value: T | undefined) => {
       setState((state) => ({ ...state, [field]: value }));
-      setValidation(value === undefined ? undefined : validate?.(value));
+      setValidation(value === undefined ? undefined : options?.validate?.(value));
     },
     validation,
     globalDisabled,
@@ -129,7 +139,7 @@ type BaseFieldProps = {
 
 export function BaseField({ label, validation, children }: BaseFieldProps) {
   return (
-    <label className="form-control w-full">
+    <label className="form-control mb-1 w-full">
       <div className="label">
         <span className="label-text">{label}</span>
       </div>
@@ -140,25 +150,5 @@ export function BaseField({ label, validation, children }: BaseFieldProps) {
         </div>
       )}
     </label>
-  );
-}
-
-type SubmitButtonProps = {
-  disabled?: boolean;
-  icon?: LucideIcon;
-  children: ReactNode;
-};
-
-export function SubmitButton({ disabled, icon: Icon, children }: SubmitButtonProps) {
-  const { globalDisabled, pending } = useContext(FormContext);
-
-  return (
-    <button
-      className="btn btn-primary mt-4"
-      type="submit"
-      disabled={disabled || globalDisabled || pending}>
-      {pending ? <span className="loading loading-spinner" /> : Icon && <Icon size={22} />}
-      {children}
-    </button>
   );
 }

@@ -22,7 +22,9 @@ export function SelectField({
   optional,
 }: Props) {
   const [ref, setRef] = useState<HTMLSelectElement | null>(null);
-  const { value, setValue, validation, globalDisabled, pending } = useField(field, ref, validate);
+  const { value, setValue, validation, globalDisabled, pending } = useField(field, ref, {
+    validate,
+  });
 
   useEffect(() => {
     if (value && !(value in options)) setValue(placeholder ? undefined : Object.keys(options)[0]);
@@ -32,6 +34,7 @@ export function SelectField({
     <BaseField label={label} validation={validation}>
       <select
         ref={setRef}
+        name={field}
         className="select select-bordered w-full"
         value={value ?? ""}
         onChange={(e) => setValue(e.target.value)}

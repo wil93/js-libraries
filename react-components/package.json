@@ -1,6 +1,6 @@
 {
   "name": "@olinfo/react-components",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,8 @@
     "@olinfo/training-api": "^0.1",
     "clsx": "^2.1",
     "date-fns": "^3.6",
-    "lucide-react": "^0.378"
+    "lucide-react": ">=0.395, <1",
+    "shiki": "^1.6"
   },
   "devDependencies": {
     "@olinfo/eslint": "^0.2",
@@ -23,7 +24,8 @@
     "@olinfo/tailwind": "^0.1",
     "@types/react": "^18",
     "tsup": "^8.0",
-    "typescript": "^5.4"
+    "typescript": "^5.4",
+    "typescript-plugin-css-modules": "^5.1"
   },
   "peerDependencies": {
     "@types/react": "^18",
