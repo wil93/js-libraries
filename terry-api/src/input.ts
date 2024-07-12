@@ -10,9 +10,9 @@ export const inputSchema = fileSchema.extend({
 export type Input = z.infer<typeof inputSchema>;
 
 export function generateInput(token: string, task: string): Promise<Input> {
-  return post(`generate_input`, { token, task }, inputSchema);
+  return post("generate_input", { token, task }, inputSchema);
 }
 
 export function abandonInput(token: string, id: string): Promise<void> {
-  return post(`abandon_input`, { token, input_id: id });
+  return post("abandon_input", { token, input_id: id });
 }

@@ -7,6 +7,7 @@
   "license": "MIT",
   "author": "Alessandro Bortolin <bortolin.alessandro@outlook.it>",
   "scripts": {
+    "lint": "biome check --write",
     "watch": "tsup --watch",
     "prebuild": "rm -rf dist",
     "build": "tsup --minify"
@@ -19,8 +20,7 @@
     "shiki": "^1.6"
   },
   "devDependencies": {
-    "@olinfo/eslint": "^0.2",
-    "@olinfo/prettier": "^0.1",
+    "@biomejs/biome": "^1.8",
     "@olinfo/tailwind": "^0.1",
     "@types/react": "^18",
     "tsup": "^8.0",
@@ -30,6 +30,5 @@
   "peerDependencies": {
     "@types/react": "^18",
     "react": "^18"
-  },
-  "prettier": "@olinfo/prettier"
+  }
 }

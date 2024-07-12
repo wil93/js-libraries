@@ -1,6 +1,6 @@
 import { AtSign, KeyRound, UserRound } from "lucide-react";
 
-import { TextField, TextFieldProps } from "./input";
+import { TextField, type TextFieldProps } from "./input";
 
 export type TextAutocompleteFieldProps = Omit<
   TextFieldProps,

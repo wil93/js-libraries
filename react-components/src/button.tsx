@@ -1,7 +1,7 @@
-import { ReactNode, useState } from "react";
+import { type ReactNode, useState } from "react";
 
 import clsx from "clsx";
-import { LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 type Props = {
   onClick?: () => Promise<void> | void;
@@ -24,7 +24,11 @@ export function Button({ onClick, icon: Icon, disabled, className, children }: P
   };
 
   return (
-    <button className={clsx("btn", className)} onClick={handleClick} disabled={loading || disabled}>
+    <button
+      className={clsx("btn", className)}
+      onClick={handleClick}
+      disabled={loading || disabled}
+      type="button">
       {loading ? <span className="loading loading-spinner" /> : Icon && <Icon size={22} />}
       {children}
     </button>

@@ -7,6 +7,7 @@
   "license": "MIT",
   "author": "Alessandro Bortolin <bortolin.alessandro@outlook.it>",
   "scripts": {
+    "lint": "biome check --write",
     "watch": "tsup --watch",
     "prebuild": "rm -rf dist",
     "build": "tsup --minify",
@@ -30,8 +31,7 @@
     "zod-validation-error": "^3.0"
   },
   "devDependencies": {
-    "@olinfo/eslint": "^0.2",
-    "@olinfo/prettier": "^0.1",
+    "@biomejs/biome": "^1.8",
     "tailwindcss": "^3.3",
     "tsup": "^8.0",
     "typescript": "^5.4"

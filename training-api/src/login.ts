@@ -2,11 +2,7 @@ import z from "zod";
 
 import { api } from "./common";
 
-export async function login(
-  username: string,
-  password: string,
-  keep_signed: boolean,
-) {
+export async function login(username: string, password: string, keep_signed: boolean) {
   await api(
     "user",
     {

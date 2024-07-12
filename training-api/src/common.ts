@@ -1,4 +1,4 @@
-import z, { ZodError, ZodObject } from "zod";
+import z, { type ZodError, type ZodObject, type ZodRawShape } from "zod";
 import { fromZodError } from "zod-validation-error";
 
 export const BASE_URL =
@@ -6,10 +6,10 @@ export const BASE_URL =
   process.env.NEXT_PUBLIC_TRAINING_API_URL ??
   "https://training.olinfo.it/api";
 
-export async function api<T>(
+export async function api<T, Shape extends ZodRawShape>(
   endpoint: string,
   body: object,
-  schema: ZodObject<any, any, any, T, any>,
+  schema: ZodObject<Shape, any, any, T, any>,
 ): Promise<T> {
   const resp = await fetch(`${BASE_URL}/${endpoint}`, {
     method: "POST",
@@ -21,7 +21,7 @@ export async function api<T>(
   }
 
   const json = await resp.json();
-  let data;
+  let data: any;
   try {
     data = z
       .discriminatedUnion("success", [

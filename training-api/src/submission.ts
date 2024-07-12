@@ -2,7 +2,7 @@ import z from "zod";
 
 import { api } from "./common";
 import { fileSchema } from "./file";
-import { Task } from "./task";
+import type { Task } from "./task";
 
 const testcaseSchema = z.object({
   idx: z.string(),
@@ -56,11 +56,7 @@ export type Submission = z.infer<typeof submissionSchema>;
 export type SubmissionDetails = z.infer<typeof submissionDetailsSchema>;
 
 export async function getTaskSubmissions(task: string): Promise<Submission[]> {
-  const list = await api(
-    "submission",
-    { action: "list", task_name: task },
-    taskSubmissionsSchema,
-  );
+  const list = await api("submission", { action: "list", task_name: task }, taskSubmissionsSchema);
   return list.submissions;
 }
 
@@ -68,11 +64,7 @@ export function getSubmission(id: number): Promise<SubmissionDetails> {
   return api("submission", { action: "details", id }, submissionDetailsSchema);
 }
 
-export async function submitBatch(
-  task: Task,
-  language: string,
-  file: File,
-): Promise<Submission> {
+export async function submitBatch(task: Task, language: string, file: File): Promise<Submission> {
   return api(
     "submission",
     {

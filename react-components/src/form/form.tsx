@@ -1,9 +1,9 @@
 import {
-  Dispatch,
-  FormEvent,
+  type Dispatch,
+  type FormEvent,
   Fragment,
-  ReactNode,
-  SetStateAction,
+  type ReactNode,
+  type SetStateAction,
   createContext,
   useContext,
   useEffect,

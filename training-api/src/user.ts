@@ -68,10 +68,7 @@ export function getUser(username: string): Promise<User> {
   return api("user", { action: "get", username }, userSchema);
 }
 
-export function getRanking(
-  page: number,
-  pageSize: number = 20,
-): Promise<Ranking> {
+export function getRanking(page: number, pageSize = 20): Promise<Ranking> {
   const first = (page - 1) * pageSize;
   const last = first + pageSize;
 

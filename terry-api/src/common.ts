@@ -1,30 +1,22 @@
-import z, { ZodError, ZodType } from "zod";
+import z, { type ZodError, type ZodType } from "zod";
 import { fromZodError } from "zod-validation-error";
 
 export const BASE_URL =
-  process.env.TERRY_URL ??
-  process.env.NEXT_PUBLIC_TERRY_URL ??
-  "https://territoriali.olinfo.it/";
+  process.env.TERRY_URL ?? process.env.NEXT_PUBLIC_TERRY_URL ?? "https://territoriali.olinfo.it/";
 
-export async function get<T>(
-  endpoint: string,
-  schema: ZodType<T, any, any>,
-): Promise<T> {
+export async function get<T>(endpoint: string, schema: ZodType<T, any, any>): Promise<T> {
   const resp = await fetch(`${BASE_URL}/api/${endpoint}`);
   if (!resp.ok) {
     throw new Error(`Error ${resp.status}: ${resp.statusText}`);
   }
 
   const json = await resp.json();
-  let data;
   try {
-    data = schema.parse(json);
+    return schema.parse(json);
   } catch (err) {
     console.error(err);
     throw fromZodError(err as ZodError);
   }
-
-  return data as T;
 }
 
 export async function post(
@@ -59,20 +51,17 @@ export async function post<T>(
 
   if (schema) {
     const json = await resp.json();
-    let data;
     try {
-      data = schema.parse(json);
+      return schema.parse(json);
     } catch (err) {
       console.error(err);
       throw fromZodError(err as ZodError);
     }
+  }
 
-    return data as T;
-  } else {
-    const text = await resp.text();
-    if (text !== "") {
-      throw new Error(`Invalid response: ${text}`);
-    }
+  const text = await resp.text();
+  if (text !== "") {
+    throw new Error(`Invalid response: ${text}`);
   }
 }
 

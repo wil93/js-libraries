@@ -1,4 +1,4 @@
-import { LanguageRegistration } from "shiki";
+import type { LanguageRegistration } from "shiki";
 
 // https://macromates.com/manual/en/language_grammars
 const srs: LanguageRegistration = {

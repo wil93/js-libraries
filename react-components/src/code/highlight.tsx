@@ -5,7 +5,7 @@ import { getHighlighter } from "shiki";
 
 // @ts-ignore
 import style from "./code.module.css";
-import { CodeProps } from "./index";
+import type { CodeProps } from "./index";
 import srs from "./srs";
 
 const highlighter = await getHighlighter({

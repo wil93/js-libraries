@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode";
-import z, { ZodError } from "zod";
+import z, { type ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
 
 const syncUserSchema = z.object({

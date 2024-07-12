@@ -27,15 +27,11 @@ export type TaskListOptions = {
 
 export function getTaskList(
   page: number,
-  pageSize: number = 20,
+  pageSize = 20,
   options?: TaskListOptions,
 ): Promise<TaskList> {
   const first = (page - 1) * pageSize;
   const last = first + pageSize;
 
-  return api(
-    "task",
-    { action: "list", first, last, ...options },
-    taskListSchema,
-  );
+  return api("task", { action: "list", first, last, ...options }, taskListSchema);
 }

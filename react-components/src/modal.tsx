@@ -1,4 +1,4 @@
-import { ReactNode, Ref, forwardRef } from "react";
+import { type ReactNode, type Ref, forwardRef } from "react";
 
 import clsx from "clsx";
 import { X } from "lucide-react";
@@ -19,7 +19,8 @@ export const Modal = forwardRef(function Modal(
         <form method="dialog">
           <button
             className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2"
-            aria-label="Chiudi">
+            aria-label="Chiudi"
+            type="submit">
             <X />
           </button>
         </form>
@@ -27,7 +28,7 @@ export const Modal = forwardRef(function Modal(
         {children}
       </div>
       <form method="dialog" className="modal-backdrop">
-        <button>Chiudi</button>
+        <button type="submit">Chiudi</button>
       </form>
     </dialog>
   );

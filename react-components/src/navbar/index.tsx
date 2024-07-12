@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 
 import clsx from "clsx";
 import { Menu, X } from "lucide-react";
@@ -64,18 +64,22 @@ export function NavbarSubmenu({ title, children }: { title: ReactNode; children:
 
   return (
     <li ref={ref} className={clsx(style.navbarSubmenu, "md:dropdown")}>
-      <label
+      <div
         tabIndex={0}
+        role="button"
         className={clsx("menu-dropdown-toggle", open && !isScreenMd && "menu-dropdown-show")}
         onClick={(e) => e.stopPropagation()}>
-        <div>
+        <label>
           <div>{title}</div>
-          <input type="checkbox" checked={open} onChange={(e) => setOpen(e.target.checked)} />
-        </div>
-      </label>
+          <input
+            type="checkbox"
+            checked={open}
+            onChange={(e) => setOpen(e.target.checked)}
+            className={style.navbarSubmenuCheckbox}
+          />
+        </label>
+      </div>
       <ul
-        tabIndex={0}
-        onClick={() => (document.activeElement as HTMLElement)?.blur?.()}
         className={clsx(
           "md:menu",
           isScreenMd && "dropdown-content",

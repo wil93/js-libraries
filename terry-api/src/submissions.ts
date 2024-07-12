@@ -1,11 +1,5 @@
 import z from "zod";
-import {
-  alertSchema,
-  caseValidationSchema,
-  dateSchema,
-  fileSchema,
-  get,
-} from "./common";
+import { alertSchema, caseValidationSchema, dateSchema, fileSchema, get } from "./common";
 
 const caseFeedbackSchema = z.object({
   correct: z.boolean(),
@@ -42,13 +36,7 @@ export function getSubmission(id: string): Promise<Submission> {
   return get(`submission/${id}`, submissionSchema);
 }
 
-export async function getSubmissions(
-  token: string,
-  task: string,
-): Promise<Submission[]> {
-  const { items } = await get(
-    `user/${token}/submissions/${task}`,
-    submissionsSchema,
-  );
+export async function getSubmissions(token: string, task: string): Promise<Submission[]> {
+  const { items } = await get(`user/${token}/submissions/${task}`, submissionsSchema);
   return items;
 }

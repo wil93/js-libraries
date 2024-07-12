@@ -1,4 +1,4 @@
-import { SyncUser, User, userPictureUrl } from "@olinfo/training-api";
+import { type SyncUser, type User, userPictureUrl } from "@olinfo/training-api";
 import clsx from "clsx";
 
 type Props = {

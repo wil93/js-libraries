@@ -30,15 +30,15 @@
   @apply mr-2 flex;
 }
 
+.navbarSubmenu > div {
+  @apply relative;
+}
+
 .navbarSubmenu > ul {
   @apply !transition-all md:ml-0 md:before:hidden;
 }
 
-.navbarSubmenu > label > div {
-  @apply relative;
-}
-
-.navbarSubmenu > label > div > input[type="checkbox"] {
+.navbarSubmenuCheckbox {
   @apply absolute inset-0 cursor-pointer appearance-none opacity-0;
 }
 
@@ -71,7 +71,7 @@
     transition: grid-template-rows 0.2s;
   }
 
-  .navbarSubmenu:has(> label > div > input[type="checkbox"]:checked) {
+  .navbarSubmenu:has(.navbarSubmenuCheckbox:checked) {
     @apply grid-rows-[2.25rem_1fr];
   }
 

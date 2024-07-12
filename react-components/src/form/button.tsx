@@ -1,7 +1,7 @@
-import { ReactNode, useContext } from "react";
+import { type ReactNode, useContext } from "react";
 
 import clsx from "clsx";
-import { LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 import { FormContext } from "./form";
 

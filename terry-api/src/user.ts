@@ -14,9 +14,7 @@ const taskSchema = z.object({
 const taskScoreSchema = z.object({
   name: z.string(),
   score: z.number(),
-  current_input: inputSchema
-    .extend({ expiry_date: dateSchema.nullable() })
-    .nullable(),
+  current_input: inputSchema.extend({ expiry_date: dateSchema.nullable() }).nullable(),
 });
 
 const userSchema = z.object({

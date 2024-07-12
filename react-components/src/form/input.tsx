@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { formatISO } from "date-fns";
-import { LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 import { BaseField, useField } from "./form";
 
@@ -33,6 +33,7 @@ function InputField<T>({
   label,
   icon: Icon,
   fromString,
+  // biome-ignore lint/suspicious/noShadowRestrictedNames: I don't know how to name it otherwise
   toString,
   validate,
   disabled,

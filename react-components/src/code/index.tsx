@@ -1,6 +1,6 @@
 import { Suspense, lazy } from "react";
 
-import { BundledLanguage } from "shiki";
+import type { BundledLanguage } from "shiki";
 
 // @ts-ignore
 import style from "./code.module.css";

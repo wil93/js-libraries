@@ -1,7 +1,7 @@
 import z from "zod";
 
 import { api } from "./common";
-import { File } from "./file";
+import type { File } from "./file";
 
 const attachmentSchema = z
   .tuple([z.string(), z.string()])
