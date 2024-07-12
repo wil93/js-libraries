@@ -19,7 +19,7 @@ export function useIsAfter(time?: Date) {
   const isAfter = useCallback(() => time && isPast(time), [time]);
 
   const [value, setValue] = useState(isAfter);
-  const refresh = useCallback(() => setValue(isAfter()), [value, isAfter]);
+  const refresh = useCallback(() => setValue(isAfter()), [isAfter]);
 
   useEffect(() => {
     if (!time) {

@@ -1,0 +1,81 @@
+.navbar {
+  @apply sticky top-0 z-20 backdrop-blur print:hidden;
+  --tw-bg-opacity: 0.85;
+}
+
+.navbar > div {
+  @apply mx-auto grid max-w-screen-xl items-center p-2;
+  grid-template-areas:
+    "brand    menu     content"
+    "menuicon menuicon menuicon";
+  grid-template-columns: auto 1fr auto;
+}
+
+.navbarMenuIcon {
+  grid-area: menuicon;
+  @apply md:!hidden;
+}
+
+.navbarMenu {
+  grid-area: menu;
+}
+
+.navbarBrand {
+  grid-area: brand;
+  @apply ml-4 mr-2 h-8 md:ml-6;
+}
+
+.navbarContent {
+  grid-area: content;
+  @apply mr-2 flex;
+}
+
+.navbarSubmenu > ul {
+  @apply !transition-all md:ml-0 md:before:hidden;
+}
+
+.navbarSubmenu > label > div {
+  @apply relative;
+}
+
+.navbarSubmenu > label > div > input[type="checkbox"] {
+  @apply absolute inset-0 cursor-pointer appearance-none opacity-0;
+}
+
+@media not screen(md) {
+  .navbar > div {
+    grid-template-areas:
+      "menuicon brand content"
+      "menu     menu  menu";
+  }
+
+  .navbarMenuIcon {
+    @apply ml-2;
+  }
+
+  .navbarMenuIcon:has(input[type="checkbox"]:checked) ~ .navbarMenu {
+    @apply grid-rows-[1fr];
+  }
+
+  .navbarMenu {
+    @apply grid grid-rows-[0fr] overflow-hidden;
+    transition: grid-template-rows 0.2s;
+  }
+
+  .navbarMenu > div {
+    @apply min-h-0;
+  }
+
+  .navbarSubmenu {
+    @apply grid grid-rows-[2.25rem_0fr] overflow-hidden;
+    transition: grid-template-rows 0.2s;
+  }
+
+  .navbarSubmenu:has(> label > div > input[type="checkbox"]:checked) {
+    @apply grid-rows-[2.25rem_1fr];
+  }
+
+  .navbarSubmenu > ul {
+    @apply h-fit min-h-0;
+  }
+}

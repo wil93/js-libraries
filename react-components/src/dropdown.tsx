@@ -11,14 +11,17 @@ export function Dropdown({ className, children }: Props) {
   return <div className={clsx("dropdown max-w-full flex-none", className)}>{children}</div>;
 }
 
-export function DropdownButton({ children }: { children: ReactNode }) {
+export function DropdownButton({ className, children }: Props) {
   return (
-    <div tabIndex={0} role="button" className="btn btn-ghost no-animation w-full flex-nowrap">
+    <div
+      tabIndex={0}
+      role="button"
+      className={clsx("btn btn-ghost no-animation w-full flex-nowrap", className)}>
       {children}
     </div>
   );
 }
 
-export function DropdownMenu({ children }: { children: ReactNode }) {
-  return <ul className="menu dropdown-content">{children}</ul>;
+export function DropdownMenu({ className, children }: Props) {
+  return <ul className={clsx("menu dropdown-content !transition-all", className)}>{children}</ul>;
 }
