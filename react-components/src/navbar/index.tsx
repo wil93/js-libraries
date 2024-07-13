@@ -20,7 +20,12 @@ export function Navbar({ color, children }: NavbarProps) {
         <label
           className={clsx(style.navbarMenuIcon, "btn btn-ghost swap swap-rotate")}
           onClick={(e) => e.stopPropagation()}>
-          <input type="checkbox" checked={open} onChange={(e) => setOpen(e.target.checked)} />
+          <input
+            type="checkbox"
+            checked={open}
+            onChange={(e) => setOpen(e.target.checked)}
+            aria-label="Mostra menu"
+          />
           <Menu className="swap-off" />
           <X className="swap-on" />
         </label>

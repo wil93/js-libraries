@@ -11,12 +11,13 @@ export function Dropdown({ className, children }: Props) {
   return <div className={clsx("dropdown max-w-full flex-none", className)}>{children}</div>;
 }
 
-export function DropdownButton({ className, children }: Props) {
+export function DropdownButton({ className, children, ariaLabel }: Props & { ariaLabel?: string }) {
   return (
     <div
       tabIndex={0}
       role="button"
-      className={clsx("btn btn-ghost no-animation w-full flex-nowrap", className)}>
+      className={clsx("btn btn-ghost no-animation w-full flex-nowrap", className)}
+      aria-label={ariaLabel}>
       {children}
     </div>
   );
