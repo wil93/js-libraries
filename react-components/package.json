@@ -1,6 +1,6 @@
 {
   "name": "@olinfo/react-components",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "build": "tsup --minify"
   },
   "dependencies": {
-    "@olinfo/training-api": "^0.1",
+    "@olinfo/training-api": "^0.2",
     "clsx": "^2.1",
     "date-fns": "^3.6",
     "lucide-react": ">=0.395, <1",
