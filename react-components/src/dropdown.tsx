@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { type MouseEvent, type ReactNode, useCallback } from "react";
 
 import clsx from "clsx";
 
@@ -25,4 +25,15 @@ export function DropdownButton({ className, children, ariaLabel }: Props & { ari
 
 export function DropdownMenu({ className, children }: Props) {
   return <ul className={clsx("menu dropdown-content !transition-all", className)}>{children}</ul>;
+}
+
+export function DropdownItem({ children }: { children: ReactNode }) {
+  const onClick = useCallback((ev: MouseEvent<HTMLLIElement>) => {
+    const el = ev.target;
+    if (el instanceof HTMLAnchorElement || el instanceof HTMLButtonElement) {
+      el.blur();
+    }
+  }, []);
+
+  return <li onClick={onClick}>{children}</li>;
 }

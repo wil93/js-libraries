@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { type MouseEvent, type ReactNode, useCallback, useEffect, useState } from "react";
 
 import clsx from "clsx";
 import { Menu, X } from "lucide-react";
@@ -13,10 +13,16 @@ type NavbarProps = {
 
 export function Navbar({ color, children }: NavbarProps) {
   const [open, setOpen] = useState(false);
+  const onClick = useCallback((ev: MouseEvent<HTMLDivElement>) => {
+    const el = ev.target;
+    if (el instanceof HTMLAnchorElement || el instanceof HTMLButtonElement) {
+      setOpen(false);
+    }
+  }, []);
 
   return (
     <div className={clsx(style.navbar, color)}>
-      <div onClick={() => setOpen(false)}>
+      <div onClick={onClick}>
         <label
           className={clsx(style.navbarMenuIcon, "btn btn-ghost swap swap-rotate")}
           onClick={(e) => e.stopPropagation()}>
@@ -50,9 +56,14 @@ export function NavbarMenu({ children }: { children: ReactNode }) {
 }
 
 export function NavbarSubmenu({ title, children }: { title: ReactNode; children: ReactNode }) {
-  const ref = useRef<HTMLLIElement>(null);
-
   const [open, setOpen] = useState(false);
+  const onClick = useCallback((ev: MouseEvent<HTMLUListElement>) => {
+    const el = ev.target;
+    if (el instanceof HTMLAnchorElement || el instanceof HTMLButtonElement) {
+      setOpen(false);
+      el.blur();
+    }
+  }, []);
 
   const [isScreenMd, setScreenMd] = useState<boolean>();
   useEffect(() => {
@@ -68,7 +79,7 @@ export function NavbarSubmenu({ title, children }: { title: ReactNode; children:
   }, []);
 
   return (
-    <li ref={ref} className={clsx(style.navbarSubmenu, "md:dropdown")}>
+    <li className={clsx(style.navbarSubmenu, "md:dropdown")}>
       <div
         tabIndex={0}
         role="button"
@@ -89,7 +100,8 @@ export function NavbarSubmenu({ title, children }: { title: ReactNode; children:
           "md:menu",
           isScreenMd && "dropdown-content",
           isScreenMd === undefined && "md:hidden",
-        )}>
+        )}
+        onClick={onClick}>
         {children}
       </ul>
     </li>
