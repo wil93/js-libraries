@@ -1,6 +1,6 @@
 {
   "name": "@olinfo/terry-api",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "biome check --write",
     "watch": "tsup --watch",
-    "prebuild": "rm -rf dist",
+    "prebuild": "yarn lint && rm -rf dist",
     "build": "tsup --minify",
     "prepack": "yarn build"
   },
@@ -25,14 +25,12 @@
     "sourcemap": true
   },
   "dependencies": {
-    "@types/node": "^20",
-    "jwt-decode": "^4.0",
     "zod": "^3.22",
     "zod-validation-error": "^3.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8",
-    "tailwindcss": "^3.3",
+    "@types/node": "^22",
     "tsup": "^8.0",
     "typescript": "^5.4"
   }
