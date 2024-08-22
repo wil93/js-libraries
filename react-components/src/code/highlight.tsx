@@ -1,14 +1,14 @@
 import { useMemo } from "react";
 
 import clsx from "clsx";
-import { getHighlighter } from "shiki";
+import { createHighlighter } from "shiki";
 
 // @ts-ignore
 import style from "./code.module.css";
 import type { CodeProps } from "./index";
 import srs from "./srs";
 
-const highlighter = await getHighlighter({
+const highlighter = await createHighlighter({
   themes: ["github-light", "github-dark"],
   langs: [srs],
 });

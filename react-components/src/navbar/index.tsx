@@ -1,4 +1,11 @@
-import { type MouseEvent, type ReactNode, useCallback, useEffect, useState } from "react";
+import {
+  type MouseEvent,
+  type ReactNode,
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useState,
+} from "react";
 
 import clsx from "clsx";
 import { Menu, X } from "lucide-react";
@@ -78,6 +85,8 @@ export function NavbarSubmenu({ title, children }: { title: ReactNode; children:
     }
   }, []);
 
+  const deferredIsMd = useDeferredValue(isScreenMd);
+
   return (
     <li className={clsx(style.navbarSubmenu, "md:dropdown")}>
       <div
@@ -96,11 +105,7 @@ export function NavbarSubmenu({ title, children }: { title: ReactNode; children:
         </label>
       </div>
       <ul
-        className={clsx(
-          "md:menu",
-          isScreenMd && "dropdown-content",
-          isScreenMd === undefined && "md:hidden",
-        )}
+        className={clsx("md:menu", isScreenMd && "dropdown-content", !deferredIsMd && "md:hidden")}
         onClick={onClick}>
         {children}
       </ul>

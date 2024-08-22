@@ -35,7 +35,12 @@
 }
 
 .navbarSubmenu > ul {
-  @apply !transition-all md:ml-0 md:before:hidden;
+  transition-property: opacity, transform, visibility !important;
+  @apply md:ml-0 md:before:hidden;
+}
+
+.navbarSubmenu > :global(.menu-dropdown-toggle):after {
+  @apply md:!transition-none;
 }
 
 .navbarSubmenuCheckbox {
@@ -76,6 +81,6 @@
   }
 
   .navbarSubmenu > ul {
-    @apply h-fit min-h-0;
+    @apply h-fit min-h-0 transition-none;
   }
 }
