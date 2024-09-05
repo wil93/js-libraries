@@ -27,7 +27,7 @@
 
 .navbarContent {
   grid-area: content;
-  @apply mr-2 flex;
+  @apply md:mr-2 flex;
 }
 
 .navbarSubmenu > div {
@@ -36,7 +36,7 @@
 
 .navbarSubmenu > ul {
   transition-property: opacity, transform, visibility !important;
-  @apply md:ml-0 md:before:hidden;
+  @apply md:ml-0 md:mt-[18px] md:before:hidden;
 }
 
 .navbarSubmenu > :global(.menu-dropdown-toggle):after {
@@ -54,10 +54,6 @@
       "menu     menu  menu";
   }
 
-  .navbarMenuIcon {
-    @apply ml-2;
-  }
-
   .navbarMenuIcon:has(input[type="checkbox"]:checked) ~ .navbarMenu {
     @apply grid-rows-[1fr];
   }
@@ -69,6 +65,10 @@
 
   .navbarMenu > div {
     @apply min-h-0;
+  }
+
+  .navbarMenu :global(.menu) {
+    @apply p-0 pt-2;
   }
 
   .navbarSubmenu {
