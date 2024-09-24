@@ -21,6 +21,15 @@ const contestSchema = z.object({
   recaptcha_public_key: z.string(),
   title: z.string(),
   top_left_name: z.string(),
+
+  // admin only
+  all_languages: z.string().array().optional(),
+  mail_from: z.string().optional(),
+  mail_password: z.string().optional(),
+  mail_server: z.string().optional(),
+  mail_username: z.string().optional(),
+  menu_on_db: z.any().optional(),
+  recaptcha_secret_key: z.string().optional(),
 });
 
 export type Contest = z.infer<typeof contestSchema>;
