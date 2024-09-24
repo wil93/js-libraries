@@ -68,7 +68,11 @@ function Notifications({ type, message, timestamp }: NotificationsProps) {
     <WithinTimeRange end={end}>
       <div className={clsx("alert max-w-sm", type)}>
         <div className="flex gap-4">
-          {type === "alert-success" ? <Check /> : <AlertTriangle />}
+          {type === "alert-success" ? (
+            <Check className="flex-none" />
+          ) : (
+            <AlertTriangle className="flex-none" />
+          )}
           <div className="text-wrap">{message}</div>
         </div>
       </div>
