@@ -29,9 +29,10 @@ export function getTaskList(
   page: number,
   pageSize = 20,
   options?: TaskListOptions,
+  cookie?: string,
 ): Promise<TaskList> {
   const first = (page - 1) * pageSize;
   const last = first + pageSize;
 
-  return api("task", { action: "list", first, last, ...options }, taskListSchema);
+  return api("task", { action: "list", first, last, ...options }, taskListSchema, cookie);
 }
