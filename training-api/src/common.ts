@@ -10,10 +10,14 @@ export async function api<T, Shape extends ZodRawShape>(
   endpoint: string,
   body: object,
   schema: ZodObject<Shape, any, any, T, any>,
+  cookie?: string,
 ): Promise<T> {
   const resp = await fetch(`${BASE_URL}/${endpoint}`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Cookie: cookie ?? "",
+    },
     body: JSON.stringify(body),
   });
   if (!resp.ok) {

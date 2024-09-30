@@ -5,6 +5,7 @@ export * from "./login";
 export * from "./profile";
 export * from "./recover";
 export * from "./signup";
+export * from "./sso";
 export * from "./submission";
 export * from "./tags";
 export * from "./task";
