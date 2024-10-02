@@ -63,6 +63,7 @@ export function Form<State extends Record<string, any>>({
       if (err instanceof FormFieldError) {
         const input = formRef.current?.querySelector(`[name="${err.field}"]`) as HTMLInputElement;
         input?.setCustomValidity(err.message);
+        setTimeout(() => input?.reportValidity());
       } else {
         throw err;
       }
